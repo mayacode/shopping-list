@@ -1,6 +1,6 @@
 import React from 'react';
-import AppActions from '../actions/app-actions';
-import AppButton from './app-button';
+import AppActions from '../../actions/app-actions';
+import AppButton from './../app-button';
 
 export default (props) => {
     let currentListActions = AppActions.currentList;

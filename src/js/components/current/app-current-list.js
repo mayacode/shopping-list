@@ -1,7 +1,7 @@
 import React from 'react';
-import AppStore from '../stores/app-store';
+import AppStore from '../../stores/app-store';
 import CurrentListItem from './app-current-list-item';
-import StoreWatchMixin from '../mixins/StoreWatchMixin';
+import StoreWatchMixin from '../../mixins/StoreWatchMixin';
 
 const currentListItems = () => {
     return {items: AppStore.getCurrentList()};
