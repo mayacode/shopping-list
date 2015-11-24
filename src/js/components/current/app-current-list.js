@@ -2,6 +2,7 @@ import React from 'react';
 import AppStore from '../../stores/app-store';
 import CurrentListItem from './app-current-list-item';
 import StoreWatchMixin from '../../mixins/StoreWatchMixin';
+import {Link} from 'react-router';
 
 const currentListItems = () => {
     return {items: AppStore.getCurrentList()};
@@ -38,10 +39,11 @@ const CurrentList = (props) => {
                 <tfoot>
                     <tr>
                         <td colSpan="4" className="text-right">Total</td>
-                        <td>{total}</td>
+                        <td>{total} &euro;</td>
                     </tr>
                 </tfoot>
             </table>
+            <Link to="/" className="btn btn-default">Back to List</Link>
         </div>
     );
 };

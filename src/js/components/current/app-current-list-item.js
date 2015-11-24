@@ -28,7 +28,7 @@ export default (props) => {
                 </div>
             </td>
             <td>
-                {props.subtotal}
+                {props.subtotal} &euro;
             </td>
         </tr>
     );
