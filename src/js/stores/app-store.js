@@ -34,16 +34,12 @@ const _decreaseItem = (item) => {
 };
 
 const _addItem = (item) => {
-    console.log('item', item);
-
     const shopItem = _findItem(item);
-    console.log('shopItem', shopItem);
     if (!shopItem) {
         _currentList.push(Object.assign({qty: 1}, item));
     } else {
         _increaseItem(shopItem);
     }
-    console.log('_currentList', _currentList);
 };
 
 const _listTotals = (qty = 0, total = 0) => {
@@ -55,11 +51,9 @@ const _listTotals = (qty = 0, total = 0) => {
 
 const AppStore = Object.assign(EventEmitter.prototype, {
     emitChange(){
-        console.log('AppStore emitChange', this.emit(CHANGE_EVENT));
         this.emit(CHANGE_EVENT);
     },
     addChangeListener(callback){
-        console.log('AppStore addChangeListener', callback);
         this.on(CHANGE_EVENT, callback);
     },
     removeChangeListener(callback){
@@ -80,7 +74,6 @@ const AppStore = Object.assign(EventEmitter.prototype, {
         return _listTotals();
     },
     dispatcherIndex: register(function(action){
-        console.log('AppStore', action);
         switch(action.actionType) {
             case AppConstants.ADD_ITEM:
                 _addItem(action.item);
@@ -98,7 +91,6 @@ const AppStore = Object.assign(EventEmitter.prototype, {
                 return true;
         }
         AppStore.emitChange();
-        console.log('_currentList',_currentList);
         return true;
     })
 });

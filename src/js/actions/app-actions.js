@@ -18,14 +18,12 @@ export default {
     },
     currentList: {
         addItem(item){
-            console.log('AppActions addItem', item);
             dispatch({
                 actionType: AppConstants.ADD_ITEM,
                 item: item
             });
         },
         removeItem(item){
-            console.log('AppActions removeItem', item);
             dispatch({
                 actionType: AppConstants.REMOVE_ITEM,
                 item: item

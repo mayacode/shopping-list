@@ -7,7 +7,10 @@ export default (props) => {
 
     return (
         <div className="col-xs-12">
-            <h4 className="col-xs-8">{props.item.name}</h4>
+            <h4 className="col-xs-6">{props.item.name}</h4>
+            <p className="col-xs-2 text-success">
+                {props.item.qty && `(${props.item.qty} added)`}
+            </p>
             <p className="col-xs-2">{props.item.price}</p>
             <AppButton
                 className="col-xs-2"
