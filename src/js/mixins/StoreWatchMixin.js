@@ -6,9 +6,12 @@ export default (InnerComponent, stateCallback) => class extends React.Component 
         super(props);
         this.state = stateCallback(props);
         this._onChange = this._onChange.bind(this);
+
+    }
+    componentWillMount(){
         AppStore.addChangeListener(this._onChange);
     }
-    ComponentWillUnmount(){
+    componentWillUnmount(){
         AppStore.removeChangeListener(this._onChange);
     }
     _onChange(){

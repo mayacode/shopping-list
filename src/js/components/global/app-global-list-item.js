@@ -1,13 +1,16 @@
 import React from 'react';
 import AppActions from '../../actions/app-actions';
 import AppButton from './../app-button';
+import Link from 'react-router';
 
 export default (props) => {
     let currentListActions = AppActions.currentList;
 
     return (
         <div className="col-xs-12">
-            <h4 className="col-xs-6">{props.item.name}</h4>
+            <div className="col-xs-6">
+                <h4>{props.item.name}</h4>
+            </div>
             <p className="col-xs-2 text-success">
                 {props.item.qty && `(${props.item.qty} added)`}
             </p>
@@ -19,3 +22,4 @@ export default (props) => {
         </div>
     );
 }
+//<Link to={ `/item/${props.item.id}` }>{props.item.name}</Link>

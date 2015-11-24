@@ -1,12 +1,16 @@
 import React from "react";
+import {Router, Route, IndexRoute} from 'react-router';
 import GlobalList from './global/app-global-list';
 import CurrentList from './current/app-current-list';
+import Template from './app-template';
 
-export default class App extends React.Component{
-    render(){
-        return <div className="container">
-            <GlobalList />
-            <CurrentList />
-        </div>;
-    }
+export default () => {
+    return (
+        <Router>
+            <Route path="/" component={Template}>
+                <IndexRoute component={GlobalList} />
+                <Route path="current" component={CurrentList} />
+            </Route>
+        </Router>
+    );
 };

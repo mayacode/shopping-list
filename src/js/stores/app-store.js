@@ -47,6 +47,7 @@ const _listTotals = (qty = 0, total = 0) => {
         qty += shopItem.qty;
         total += shopItem.qty * shopItem.price;
     });
+    return {qty, total};
 };
 
 const AppStore = Object.assign(EventEmitter.prototype, {
