@@ -4,7 +4,7 @@
   "description": "Shopping list",
   "main": "./js/app.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --config webpack.dev.config.js"
+    "start": "webpack-dev-server --progress"
   },
   "keywords": [
     "shopping",
