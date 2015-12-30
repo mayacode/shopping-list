@@ -29,7 +29,7 @@ const ListAPI = {
             qty += shopItem.qty;
             total += shopItem.qty * shopItem.price;
         });
-        return {qty, total};
+        return {qty, total: total.toFixed(2)};
     },
     getGlobalList(){
         return this.globalList.map(item => {
@@ -38,6 +38,9 @@ const ListAPI = {
                 item,
                 this.currentList.find(cItem => cItem.id === item.id));
         });
+    },
+    addNewItem(item){
+        this.currentList.push(Object.assign({qty: 1}, item));
     },
     init() {
         for (let i = 0; i < 10; i++) {

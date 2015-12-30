@@ -3,6 +3,7 @@ import AppStore from '../../stores/app-store';
 import CurrentListItem from './app-current-list-item';
 import StoreWatchMixin from '../../mixins/StoreWatchMixin';
 import {Link} from 'react-router';
+import AddNewProduct from '../newItem/addNewItem';
 
 const currentListItems = () => {
     return {items: AppStore.getCurrentList()};
@@ -15,7 +16,7 @@ const CurrentList = (props) => {
         total += subtotal;
         return (
             <CurrentListItem
-                subtotal={subtotal}
+                subtotal={subtotal.toFixed(2)}
                 key={item.id}
                 item={item} />
         );
@@ -23,6 +24,7 @@ const CurrentList = (props) => {
     return (
         <div>
             <h1>Current list</h1>
+            <AddNewProduct key={props.items.length} max={props.items.length} />
             <table className="table table-hover">
                 <thead>
                     <tr>
@@ -39,7 +41,7 @@ const CurrentList = (props) => {
                 <tfoot>
                     <tr>
                         <td colSpan="4" className="text-right">Total</td>
-                        <td>{total} &euro;</td>
+                        <td>{total.toFixed(2)} &euro;</td>
                     </tr>
                 </tfoot>
             </table>
