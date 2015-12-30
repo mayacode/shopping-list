@@ -11,7 +11,6 @@ function getGlobalListItem(props) {
 }
 
 const ItemDetail = (props) => {
-    console.log('ItemDetail',props);
     let currentListActions = AppActions.currentList;
     return (
         <div>
