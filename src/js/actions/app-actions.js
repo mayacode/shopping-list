@@ -40,6 +40,12 @@ export default {
                 actionType: Constants.DECREASE_ITEM,
                 item: item
             });
+        },
+        addNewItem(item){
+            dispatch({
+                actionType: Constants.ADD_NEW_ITEM,
+                item: item
+            });
         }
     }
 }

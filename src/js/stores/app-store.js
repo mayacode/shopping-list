@@ -38,6 +38,9 @@ const AppStore = Object.assign(EventEmitter.prototype, {
             case Constants.DECREASE_ITEM:
                 ListAPI.decreaseItem(action.item);
                 break;
+            case Constants.ADD_NEW_ITEM:
+                ListAPI.addNewItem(action.item);
+                break;
             default:
                 return true;
         }
