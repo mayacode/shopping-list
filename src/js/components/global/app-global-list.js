@@ -6,23 +6,22 @@ import StoreWatchMixin from '../../mixins/StoreWatchMixin';
 export default class GlobalList extends React.Component {
     constructor(props){
         super(props);
-        console.log(props);
         this.state = {
-            global: []
+           global: []
         };
     }
     componentDidMount(){
         this.init();
     }
     componentWillReceiveProps(nextProps){
-        AppStore.removeRefBinding(this.ref);
+        AppStore.removeRefBinding(this.refGlobal);
         this.init();
     }
     componentWillUnmount(){
-        AppStore.removeRefBinding(this.ref);
+        AppStore.removeRefBinding(this.refGlobal);
     }
     init(){
-        this.ref = AppStore.getRef('globalList', 'global', this);
+        this.refGlobal = AppStore.getRef('globalList', 'global', this);
     }
     render(){
         let $items = this.state.global.map(item => {

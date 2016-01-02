@@ -4,28 +4,49 @@ var base = Rebase.createClass('link-to-your-free-firebase.com-db');
 const ListAPI = {
     globalList: [],
     currentList: [],
-    getDB(){
-        return base;
-    },
     getRef(endpoint, stateElementName, context){
-        console.log('getRef', endpoint, stateElementName);
         return base.syncState(endpoint, {
             context: context,
             state: stateElementName,
             asArray: true,
             then(){
-                context.setState({loading: false})
+                context.setState({loading: true})
             }
         });
     },
     removeRefBinding(ref){
         base.removeBinding(ref);
     },
-    removeItem(item) {
-        this.currentList.splice(this.currentList.findIndex( i => i === item), 1);
+    DBbindToState(endpoint, stateElementName, context){
+        return base.bindToState(endpoint, {
+            context: context,
+            state: stateElementName,
+            asArray: true
+        });
     },
-    findItem(item) {
-        return this.currentList.find(shopItem => shopItem.id === item.id);
+    findItem(item, itemsList) {
+        return itemsList.find(shopItem => shopItem.id === item.id);
+    },
+    removeItem(item, itemsList) {
+        itemsList.splice(itemsList.findIndex( i => i === item), 1);
+    },
+    increaseOrAddItem(dataObj) {
+        base.fetch(dataObj.endpoint, {
+            context: this,
+            asArray: true,
+            then(data){
+                if (data.length) {
+                    console.log(data);
+                } else {
+                    base.push(dataObj.endpoint, {data: Object.assign({qty: 1}, dataObj.item)});
+                }
+            },
+            queries: {
+                orderByChild: 'name',
+                startAt: dataObj.item.name,
+                endAt: dataObj.item.name
+            }
+        });
     },
     increaseItem(item) {
         item.qty++;
@@ -36,13 +57,14 @@ const ListAPI = {
             this.removeItem(item);
         }
     },
-    addItem(item) {
-        const shopItem = this.findItem(item);
-        if (!shopItem) {
-            this.currentList.push(Object.assign({qty: 1}, item));
-        } else {
-            this.increaseItem(shopItem);
-        }
+    addItem(dataObj) {
+        this.increaseOrAddItem(dataObj);
+        //if (!shopItem) {
+        //    //this.currentList.push(Object.assign({qty: 1}, item));
+        //    base.push(dataObj.endpoint, dataObj.item);
+        //} else {
+        //    this.increaseItem(shopItem);
+        //}
     },
     listTotals(qty = 0, total = 0) {
         this.currentList.forEach(shopItem => {

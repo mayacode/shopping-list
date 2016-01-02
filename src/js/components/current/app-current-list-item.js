@@ -9,7 +9,7 @@ export default (props) => {
             <td>
                 <AppButton
                     text="x"
-                    handler={currentListActions.removeItem.bind(null, props.item)} />
+                    handler={props.removeHandler.bind(null, props.item)} />
             </td>
             <td>
                 {props.item.name}
@@ -21,10 +21,10 @@ export default (props) => {
                 <div className="btn-group">
                     <AppButton
                         text="-"
-                        handler={currentListActions.decreaseItem.bind(null, props.item)} />
+                        handler={props.decreaseHandler} />
                     <AppButton
                         text="+"
-                        handler={currentListActions.increaseItem.bind(null, props.item)} />
+                        handler={props.increaseHandler} />
                 </div>
             </td>
             <td>

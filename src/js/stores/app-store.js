@@ -24,22 +24,22 @@ const AppStore = Object.assign(EventEmitter.prototype, {
     getListTotals(){
         return ListAPI.listTotals();
     },
-    getDB(){
-        return ListAPI.getDB();
-    },
     getRef(endpoint, stateElementName, context){
         return ListAPI.getRef(endpoint, stateElementName, context);
     },
+    DBbindToState(endpoint, stateElementName, context){
+        return ListAPI.DBbindToState(endpoint, stateElementName, context);
+    },
     removeRefBinding(ref){
         ListAPI.removeRefBinding(ref);
+    },
+    findItem(item, itemsList) {
+        ListAPI.findItem(item, itemsList);
     },
     dispatcherIndex: register(function(action){
         switch(action.actionType) {
             case Constants.ADD_ITEM:
                 ListAPI.addItem(action.item);
-                break;
-            case Constants.REMOVE_ITEM:
-                ListAPI.removeItem(action.item);
                 break;
             case Constants.INCREASE_ITEM:
                 ListAPI.increaseItem(action.item);

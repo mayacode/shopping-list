@@ -22,7 +22,7 @@ export default (props) => {
             </div>
             <AppButton
                 className="col-xs-2"
-                handler={currentListActions.addItem.bind(null, props.item)}
+                handler={currentListActions.addItem.bind(null, {endpoint: 'currentList', item: props.item})}
                 text="Add" />
         </div>
     );
