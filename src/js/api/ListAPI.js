@@ -1,6 +1,26 @@
+import Rebase from 're-base';
+var base = Rebase.createClass('link-to-your-free-firebase.com-db');
+
 const ListAPI = {
     globalList: [],
     currentList: [],
+    getDB(){
+        return base;
+    },
+    getRef(endpoint, stateElementName, context){
+        console.log('getRef', endpoint, stateElementName);
+        return base.syncState(endpoint, {
+            context: context,
+            state: stateElementName,
+            asArray: true,
+            then(){
+                context.setState({loading: false})
+            }
+        });
+    },
+    removeRefBinding(ref){
+        base.removeBinding(ref);
+    },
     removeItem(item) {
         this.currentList.splice(this.currentList.findIndex( i => i === item), 1);
     },
@@ -31,27 +51,9 @@ const ListAPI = {
         });
         return {qty, total: total.toFixed(2)};
     },
-    getGlobalList(){
-        return this.globalList.map(item => {
-            return Object.assign(
-                {},
-                item,
-                this.currentList.find(cItem => cItem.id === item.id));
-        });
-    },
     addNewItem(item){
         this.currentList.push(Object.assign({qty: 1}, item));
-    },
-    init() {
-        for (let i = 0; i < 10; i++) {
-            this.globalList.push({
-                'id': i,
-                'name': 'thing #' + i,
-                'price': i + 1
-            });
-        }
     }
 };
 
-ListAPI.init();
 export default ListAPI;

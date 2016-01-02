@@ -24,6 +24,15 @@ const AppStore = Object.assign(EventEmitter.prototype, {
     getListTotals(){
         return ListAPI.listTotals();
     },
+    getDB(){
+        return ListAPI.getDB();
+    },
+    getRef(endpoint, stateElementName, context){
+        return ListAPI.getRef(endpoint, stateElementName, context);
+    },
+    removeRefBinding(ref){
+        ListAPI.removeRefBinding(ref);
+    },
     dispatcherIndex: register(function(action){
         switch(action.actionType) {
             case Constants.ADD_ITEM:
